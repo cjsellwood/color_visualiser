@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Color Visualiser</title>
+    <link href="styles.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div id="boxes">
+      <div id="outer">
+        <div id="inner">
+          <div id="inner-text">The quick brown fox jumps over the lazy black dog</div>
+        </div>
+      </div>
+    </div>
+    <div id="controls">
+      <form class="controls-form">
+        <h2>Outer Box</h2>
+        <label for="red">R</label>
+        <input name="red" id="outer-red" type="range" min="0" max="255" value="0">
+        <label for="green">G</label>
+        <input name="green" id="outer-green" type="range" min="0" max="255" value="0">
+        <label for="blue">B</label>
+        <input name="blue" id="outer-blue" type="range" min="0" max="255" value="0">
+        <button id="outer-btn"type="button">rgb(0, 0, 0)</button>
+      </form>
+      <form class="controls-form">
+        <h2>Inner Box</h2>
+        <label for="red">R</label>
+        <input name="red" id="inner-red" type="range" min="0" max="255" value="255">
+        <label for="green">G</label>
+        <input name="green" id="inner-green" type="range" min="0" max="255" value="255">
+        <label for="blue">B</label>
+        <input name="blue" id="inner-blue" type="range" min="0" max="255" value="255">
+        <button id="inner-btn"type="button">rgb(255, 255, 255)</button>
+      </form>
+      <form class="controls-form">
+        <h2>Text</h2>
+        <label for="red">R</label>
+        <input name="red" id="text-red" type="range" min="0" max="255" value="0">
+        <label for="green">G</label>
+        <input name="green" id="text-green" type="range" min="0" max="255" value="0">
+        <label for="blue">B</label>
+        <input name="blue" id="text-blue" type="range" min="0" max="255" value="0">
+        <button id="inner-text-btn" type="button">rgb(0, 0, 0)</button>
+      </form>
+    </div>
+    <script src="scripts.js"></script>
+  </body>
+</html>
