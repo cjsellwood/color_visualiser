@@ -57,6 +57,13 @@ function changeInnerColor() {
   innerCurrent = `rgb(${innerRed.value}, ${innerGreen.value}, ${innerBlue.value})`;
   innerBox.style.backgroundColor = innerCurrent;
   innerBtn.textContent = innerCurrent;
+
+    // Update contrast
+  textContrast = contrast(
+    [textRed.value, textGreen.value, textBlue.value],
+    [innerRed.value, innerGreen.value, innerBlue.value]
+  );
+  contrastElement.textContent = textContrast.toFixed(1);
 }
 
 // Inner box color button copy text
@@ -94,6 +101,13 @@ function changeTextColor() {
   textCurrent = `rgb(${textRed.value}, ${textGreen.value}, ${textBlue.value})`;
   innerText.style.color = textCurrent;
   innerTextBtn.textContent = textCurrent;
+
+  // Update contrast
+  textContrast = contrast(
+    [textRed.value, textGreen.value, textBlue.value],
+    [innerRed.value, innerGreen.value, innerBlue.value]
+  );
+  contrastElement.textContent = textContrast.toFixed(1);
 }
 
 // Copy text color
@@ -108,3 +122,31 @@ innerTextBtn.addEventListener("click", () => {
   document.body.removeChild(textArea);
   innerTextBtn.textContent = "Copied";
 });
+
+// Calculate luminance
+function luminance(color) {
+  color = color.map((el) => {
+    el = el / 255;
+    if (el <= 0.03928) {
+      el = el / 12.92;
+    } else {
+      el = ((el + 0.055) / 1.055) ** 2.4;
+    }
+    return el;
+  });
+  return 0.2126 * color[0] + 0.7152 * color[1] + 0.0722 * color[2];
+}
+
+// Calculate contrast between text and its background
+function contrast(color1, color2) {
+  const luminance1 = luminance(color1) + 0.05;
+  const luminance2 = luminance(color2) + 0.05;
+  const ratio = (Math.max(luminance1, luminance2)) / (Math.min(luminance1, luminance2));
+  return ratio;
+}
+
+let textContrast = contrast(
+  [textRed.value, textGreen.value, textBlue.value],
+  [innerRed.value, innerGreen.value, innerBlue.value]
+);
+const contrastElement = document.getElementById("calculated-contrast");
