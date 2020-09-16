@@ -50,23 +50,24 @@ innerBlue.addEventListener("input", changeInnerColor);
 
 // Current color
 let innerCurrent = "rgb(255, 255, 255)";
-const innerBtn = document.getElementById("inner-btn");
+const innerInput = document.getElementById("inner-input")
 
 // Change color of inner box
 function changeInnerColor() {
   innerCurrent = `rgb(${innerRed.value}, ${innerGreen.value}, ${innerBlue.value})`;
   innerBox.style.backgroundColor = innerCurrent;
-  innerBtn.textContent = innerCurrent;
-
-    // Update contrast
+  innerInput.setAttribute("placeholder", innerCurrent)
+  
+  // Update contrast
   textContrast = contrast(
     [textRed.value, textGreen.value, textBlue.value],
     [innerRed.value, innerGreen.value, innerBlue.value]
-  );
-  contrastElement.textContent = textContrast.toFixed(1);
-}
-
+    );
+    contrastElement.textContent = textContrast.toFixed(1);
+  }
+  
 // Inner box color button copy text
+const innerBtn = document.getElementById("inner-btn");
 innerBtn.addEventListener("click", () => {
   // Create a text area to copy text from
   const textArea = document.createElement("textarea");
@@ -76,7 +77,7 @@ innerBtn.addEventListener("click", () => {
   textArea.select();
   document.execCommand("copy");
   document.body.removeChild(textArea);
-  innerBtn.textContent = "Copied";
+  innerBtn.style.backgroundColor = "red";
 });
 
 // Inner text
